@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go On a Date With John</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <style>
+        .polaroid {
+            background: white;
+            padding: 1rem 1rem 2rem 1rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transform: rotate(2deg);
+            transition: all 0.3s ease;
+        }
+        .polaroid:hover {
+            transform: rotate(0deg) scale(1.05);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+        }
+        .polaroid:nth-child(even) {
+            transform: rotate(-1deg);
+        }
+        .polaroid:nth-child(even):hover {
+            transform: rotate(0deg) scale(1.05);
+        }
+        .tear-strip {
+            background: repeating-linear-gradient(
+                45deg,
+                #ff0000,
+                #ff0000 10px,
+                #ffffff 10px,
+                #ffffff 20px
+            );
+            height: 80px;
+            position: relative;
+        }
+        .tear-tab {
+            width: 50px;
+            height: 30px;
+            background: #ff0000;
+            border-radius: 0 0 10px 10px;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            cursor: pointer;
+        }
+        .tear-tab:hover {
+            background: #cc0000;
+        }
+        .testimonial-card {
+            background: rgba(255,255,255,0.8);
+            border-left: 5px solid #f43f5e;
+            transition: all 0.3s ease;
+        }
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .skill-meter {
+            height: 10px;
+            border-radius: 5px;
+            background: #e5e7eb;
+            overflow: hidden;
+        }
+        .skill-meter-fill {
+            height: 100%;
+            border-radius: 5px;
+            background: linear-gradient(90deg, #f43f5e, #ec4899);
+        }
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .heart-rating {
+            color: #e5e7eb;
+        }
+        .heart-rating.filled {
+            color: #f43f5e;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-pink-50 to-purple-100 font-sans">
+    <div class="container mx-auto px-4 py-8 max-w-6xl">
+        <!-- Header -->
+        <header class="text-center mb-12">
+            <h1 class="text-5xl font-bold text-rose-600 mb-2" style="font-family: 'Playfair Display', serif;">
+                Your future ‘We Met’ story starts here.
+              </h1>
+            <p class="text-xl text-gray-600 italic">"Like now, overthink later."</p>
+            <div class="flex justify-center mt-4">
+                <div class="w-24 h-1 bg-rose-400 rounded-full"></div>
+            </div>
+        </header>
+
+        <!-- Main Profile -->
+        <div class="bg-white rounded-2xl shadow-xl overflow-hidden mb-12">
+            <div class="md:flex">
+                <!-- Profile Photo -->
+                <div class="md:w-1/3 p-8 flex flex-col items-center">
+                    <div class="w-64 h-64 rounded-full overflow-hidden border-4 border-rose-200 shadow-lg mb-6">
+                        <img src="https://drive.google.com/uc?export=view&id=1gufdvo9UK8nrrG0k1wmWuYE8ut_V2355" alt="Profile" class="w-full h-full object-cover">
+                    </div>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-2">Alex</h2>
+                    <p class="text-gray-600 mb-4">29 • New York • 5'9"</p>
+                    <div class="flex mb-4">
+                        <i class="fas fa-star text-yellow-400 text-xl mx-1"></i>
+                        <i class="fas fa-star text-yellow-400 text-xl mx-1"></i>
+                        <i class="fas fa-star text-yellow-400 text-xl mx-1"></i>
+                        <i class="fas fa-star text-yellow-400 text-xl mx-1"></i>
+                        <i class="fas fa-star-half-alt text-yellow-400 text-xl mx-1"></i>
+                    </div>
+                    <div class="flex space-x-4">
+                        <button class="bg-rose-500 hover:bg-rose-600 text-white px-6 py-2 rounded-full font-medium transition">
+                            <i class="fas fa-heart mr-2"></i> Like
+                        </button>
+                        <button class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-full font-medium transition">
+                            <i class="fas fa-comment mr-2"></i> Message
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Bio -->
+                <div class="md:w-2/3 p-8 bg-gradient-to-br from-rose-50 to-purple-50">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">About Me</h3>
+                    <p class="text-gray-700 mb-6 leading-relaxed">
+                        Professional goofball with a heart of gold. I'm equally comfortable discussing philosophy over wine or eating pizza in my pajamas. 
+                        My spirit animal is a golden retriever - loyal, playful, and occasionally a little too excited. 
+                        Looking for someone who can keep up with my random dance parties and deep conversations about the meaning of life.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div>
+                            <h4 class="font-semibold text-gray-800 mb-2">Looking For:</h4>
+                            <ul class="text-gray-700 space-y-1">
+                                <li><i class="fas fa-check text-rose-500 mr-2"></i> Adventure partner</li>
+                                <li><i class="fas fa-check text-rose-500 mr-2"></i> Netflix cuddler</li>
+                                <li><i class="fas fa-check text-rose-500 mr-2"></i> Foodie companion</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800 mb-2">Dealbreakers:</h4>
+                            <ul class="text-gray-700 space-y-1">
+                                <li><i class="fas fa-times text-gray-500 mr-2"></i> Bad texter</li>
+                                <li><i class="fas fa-times text-gray-500 mr-2"></i> Doesn't like dogs</li>
+                                <li><i class="fas fa-times text-gray-500 mr-2"></i> Takes life too seriously</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center">
+                        <div class="mr-4">
+                            <div class="w-16 h-16 rounded-full bg-rose-100 flex items-center justify-center">
+                                <i class="fas fa-wine-glass-alt text-rose-500 text-2xl"></i>
+                            </div>
+                        </div>
+                        <div class="mr-4">
+                            <div class="w-16 h-16 rounded-full bg-purple-100 flex items-center justify-center">
+                                <i class="fas fa-music text-purple-500 text-2xl"></i>
+                            </div>
+                        </div>
+                        <div class="mr-4">
+                            <div class="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center">
+                                <i class="fas fa-utensils text-blue-500 text-2xl"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center">
+                                <i class="fas fa-plane text-green-500 text-2xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Photo Gallery -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Life in Pictures</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                <div class="polaroid">
+                    <img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1148&q=80" alt="Travel" class="w-full h-64 object-cover mb-2">
+                    <p class="text-center font-handwriting text-gray-700">Exploring Bali</p>
+                </div>
+                <div class="polaroid">
+                    <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f8e4c6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="Food" class="w-full h-64 object-cover mb-2">
+                    <p class="text-center font-handwriting text-gray-700">Foodie adventures</p>
+                </div>
+                <div class="polaroid">
+                    <img src="https://images.unsplash.com/photo-1549060279-7e168fcee0c2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Dog" class="w-full h-64 object-cover mb-2">
+                    <p class="text-center font-handwriting text-gray-700">My best buddy</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Video Section -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Watch Me in Action</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="video-container">
+                        <!-- Replace with your actual video embed code -->
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg">My Travel Vlog</h3>
+                        <p class="text-gray-600">Watch me get lost in Thailand</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="video-container">
+                        <!-- Replace with your actual video embed code -->
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg">Cooking Challenge</h3>
+                        <p class="text-gray-600">Attempting to make pasta from scratch</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hobbies & Interests -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Hobbies & Interests</h2>
+            <div class="bg-white rounded-xl shadow-md p-6">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="flex flex-col items-center p-4 hover:bg-rose-50 rounded-lg transition">
+                        <div class="w-16 h-16 bg-rose-100 rounded-full flex items-center justify-center mb-2">
+                            <i class="fas fa-hiking text-rose-500 text-2xl"></i>
+                        </div>
+                        <span class="font-medium">Hiking</span>
+                    </div>
+                    <div class="flex flex-col items-center p-4 hover:bg-purple-50 rounded-lg transition">
+                        <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-2">
+                            <i class="fas fa-book text-purple-500 text-2xl"></i>
+                        </div>
+                        <span class="font-medium">Reading</span>
+                    </div>
+                    <div class="flex flex-col items-center p-4 hover:bg-blue-50 rounded-lg transition">
+                        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-2">
+                            <i class="fas fa-chess text-blue-500 text-2xl"></i>
+                        </div>
+                        <span class="font-medium">Chess</span>
+                    </div>
+                    <div class="flex flex-col items-center p-4 hover:bg-green-50 rounded-lg transition">
+                        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-2">
+                            <i class="fas fa-utensils text-green-500 text-2xl"></i>
+                        </div>
+                        <span class="font-medium">Cooking</span>
+                    </div>
+                    <div class="flex flex-col items-center p-4 hover:bg-yellow-50 rounded-lg transition">
+                        <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mb-2">
+                            <i class="fas fa-music text-yellow-500 text-2xl"></i>
+                        </div>
+                        <span class="font-medium">Music</span>
+                    </div>
+                    <div class="flex flex-col items-center p-4 hover:bg-indigo-50 rounded-lg transition">
+                        <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mb-2">
+                            <i class="fas fa-paint-brush text-indigo-500 text-2xl"></i>
+                        </div>
+                        <span class="font-medium">Painting</span>
+                    </div>
+                    <div class="flex flex-col items-center p-4 hover:bg-red-50 rounded-lg transition">
+                        <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mb-2">
+                            <i class="fas fa-running text-red-500 text-2xl"></i>
+                        </div>
+                        <span class="font-medium">Running</span>
+                    </div>
+                    <div class="flex flex-col items-center p-4 hover:bg-pink-50 rounded-lg transition">
+                        <div class="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mb-2">
+                            <i class="fas fa-camera text-pink-500 text-2xl"></i>
+                        </div>
+                        <span class="font-medium">Photography</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="mb-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Hard Skills -->
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">Hard Skills</h2>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">Cooking</span>
+                                <span class="text-rose-500">85%</span>
+                            </div>
+                            <div class="skill-meter">
+                                <div class="skill-meter-fill" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">Photography</span>
+                                <span class="text-rose-500">75%</span>
+                            </div>
+                            <div class="skill-meter">
+                                <div class="skill-meter-fill" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">Spanish</span>
+                                <span class="text-rose-500">60%</span>
+                            </div>
+                            <div class="skill-meter">
+                                <div class="skill-meter-fill" style="width: 60%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">Guitar</span>
+                                <span class="text-rose-500">70%</span>
+                            </div>
+                            <div class="skill-meter">
+                                <div class="skill-meter-fill" style="width: 70%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Soft Skills -->
+                <div class="bg-white rounded-xl shadow-md p-6">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">Soft Skills</h2>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">Humor</span>
+                                <span class="text-rose-500">95%</span>
+                            </div>
+                            <div class="skill-meter">
+                                <div class="skill-meter-fill" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">Empathy</span>
+                                <span class="text-rose-500">90%</span>
+                            </div>
+                            <div class="skill-meter">
+                                <div class="skill-meter-fill" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">Listening</span>
+                                <span class="text-rose-500">88%</span>
+                            </div>
+                            <div class="skill-meter">
+                                <div class="skill-meter-fill" style="width: 88%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="font-medium">Patience</span>
+                                <span class="text-rose-500">80%</span>
+                            </div>
+                            <div class="skill-meter">
+                                <div class="skill-meter-fill" style="width: 80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Values Section -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Core Values</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white rounded-xl shadow-md p-6 text-center hover:shadow-lg transition">
+                    <div class="w-20 h-20 bg-rose-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-heart text-rose-500 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Kindness</h3>
+                    <p class="text-gray-600">I believe in treating everyone with compassion and respect.</p>
+                </div>
+                <div class="bg-white rounded-xl shadow-md p-6 text-center hover:shadow-lg transition">
+                    <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-globe-americas text-blue-500 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Adventure</h3>
+                    <p class="text-gray-600">Life's too short to stay in your comfort zone.</p>
+                </div>
+                <div class="bg-white rounded-xl shadow-md p-6 text-center hover:shadow-lg transition">
+                    <div class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-hand-holding-heart text-purple-500 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Authenticity</h3>
+                    <p class="text-gray-600">Being true to myself and others is non-negotiable.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Friend Testimonials</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="testimonial-card p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Sarah" class="w-12 h-12 rounded-full object-cover mr-4">
+                        <div>
+                            <h4 class="font-bold">Sarah</h4>
+                            <div class="flex">
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic">"Alex is the most fun person I know! Always down for spontaneous adventures but also the best shoulder to cry on. 10/10 would recommend."</p>
+                </div>
+                <div class="testimonial-card p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Mike" class="w-12 h-12 rounded-full object-cover mr-4">
+                        <div>
+                            <h4 class="font-bold">Mike</h4>
+                            <div class="flex">
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star-half-alt text-yellow-400"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic">"Best travel buddy ever! Alex makes every trip unforgettable. Only downside is they're a morning person and I'm not."</p>
+                </div>
+                <div class="testimonial-card p-6 rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <img src="https://images.unsplash.com/photo-1552058544-f2b08422138a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Jamie" class="w-12 h-12 rounded-full object-cover mr-4">
+                        <div>
+                            <h4 class="font-bold">Jamie</h4>
+                            <div class="flex">
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                                <i class="fas fa-star text-yellow-400"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic">"If you're looking for someone genuine, funny, and kind, look no further. Alex is the whole package plus an amazing cook!"</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Star Ratings -->
+        <section class="mb-12 bg-white rounded-xl shadow-md p-6">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Star Ratings</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <div class="flex items-center mb-2">
+                        <span class="font-medium mr-4 w-32">Humor</span>
+                        <div class="heart-rating">
+                            <i class="fas fa-heart heart-rating filled"></i>
+                            <i class="fas fa-heart heart-rating filled"></i>
+                            <i class="fas fa-heart heart-rating filled"></i>
+                            <i class="fas fa-heart heart-rating filled"></i>
+                            <i class="fas fa-heart heart-rating filled"></i>
+                        </div>
+                    </div>
+                    <div class="flex items-center mb-2">
+                        <span class="font-medium mr-4 w-32">Intelligence</span>
+                        <div class="heart-rating">
+                            <i class="fas fa-heart heart-rating filled"></i>
+                            <i class="fas fa-heart heart-rating filled"></i>
+                            <i class="fas fa-heart heart-rating filled"></i>
+                            <i class="fas fa-heart heart-rating filled"></i>
+                            <i class="fas fa-heart heart-rating"></i>
+                        </div>
+                    </div>
+                    <div class="flex items-center mb-2">
+                        <span class="font-medium mr-4 w-32">Adventurous</span>
+                        <div class="heart-rating">
+                            <i class="fas fa-heart heart-rating filled"></i>
+                            <i class="fas fa-heart heart-rating filled"></i>
+                            <i class="fas fa-heart heart-rating filled"></i>
+                            <i class="fas fa-heart heart-rating filled"></i>
+                            <i class="fas fa-heart heart-rating filled"></i>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex items-center mb-2">
+                        <span class="font-medium mr-4 w-32">Romance</span>
+                        <div class="heart-rating">
+                            <i class="fas fa-heart heart-rating filled"></i>
+                            <i class="fas fa-heart heart-rating filled"></i>
+                            <i class="fas fa-heart heart-rating filled"></i>
+                            <i class="fas fa-heart heart-rating filled"></i>
+                            <i class="fas fa-heart heart-rating"></i>
+                        </div>
+                    </div>
+                    <div class="flex items-center mb-2">
+                        <span class="font-medium mr-4 w-32">Communication</span>
+                        <div class="heart-rating">
+                            <i class="fas fa-heart heart-rating filled"></i>
+                            <i class="fas fa-heart heart-rating filled"></i>
+                            <i class="fas fa-heart heart-rating filled"></i>
+                            <i class="fas fa-heart heart-rating filled"></i>
+                            <i class="fas fa-heart heart-rating filled"></i>
+                        </div>
+                    </div>
+                    <div class="flex items-center mb-2">
+                        <span class="font-medium mr-4 w-32">Loyalty</span>
+                        <div class="heart-rating">
+                            <i class="fas fa-heart heart-rating filled"></i>
+                            <i class="fas fa-heart heart-rating filled"></i>
+                            <i class="fas fa-heart heart-rating filled"></i>
+                            <i class="fas fa-heart heart-rating filled"></i>
+                            <i class="fas fa-heart heart-rating filled"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tear-off Contact Strip -->
+        <footer class="mt-12">
+            <div class="tear-strip relative">
+                <div class="tear-tab"></div>
+            </div>
+            <div class="bg-white p-4 text-center">
+                <div class="flex justify-center space-x-8 mb-4">
+                    <a href="#" class="text-rose-500 hover:text-rose-700 text-xl"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-blue-500 hover:text-blue-700 text-xl"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="text-blue-400 hover:text-blue-600 text-xl"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-red-500 hover:text-red-700 text-xl"><i class="fab fa-youtube"></i></a>
+                </div>
+                <p class="text-gray-600">© 2023 Hot Single in Your Area. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Simple animation for the tear-off tabs
+        document.querySelectorAll('.tear-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                this.parentElement.style.height = '0';
+                setTimeout(() => {
+                    this.parentElement.style.display = 'none';
+                }, 500);
+            });
+        });
+
+        // Rating system interaction
+        document.querySelectorAll('.heart-rating i').forEach(heart => {
+            heart.addEventListener('click', function() {
+                const ratingContainer = this.parentElement;
+                const hearts = ratingContainer.querySelectorAll('i');
+                const clickedIndex = Array.from(hearts).indexOf(this);
+                
+                hearts.forEach((h, index) => {
+                    if(index <= clickedIndex) {
+                        h.classList.add('filled');
+                    } else {
+                        h.classList.remove('filled');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
